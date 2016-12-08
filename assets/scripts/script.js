@@ -41,6 +41,11 @@
 	} );
 } )( jQuery );
 
+(function($) {
+  // Load Events
+  $(document).ready();
+})(jQeuery); // Fully reference jQuery after this point.
+
 /**
  * File navigation.js.
  *
@@ -153,11 +158,6 @@
 		}
 	}( container ) );
 } )();
-
-$( document ).ready(function() {
-
-  // Write scripts here
-});
 
 /**
  * File skip-link-focus-fix.js.

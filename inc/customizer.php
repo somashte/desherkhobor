@@ -1,8 +1,8 @@
 <?php
 /**
- * wp-theme-boilerplate Theme Customizer.
+ * desher-khobor Theme Customizer.
  *
- * @package wp-theme-boilerplate
+ * @package desher-khobor
  */
 
 /**
@@ -10,17 +10,17 @@
  *
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
-function wp_theme_boilerplate_customize_register( $wp_customize ) {
+function desher_khobor_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 }
-add_action( 'customize_register', 'wp_theme_boilerplate_customize_register' );
+add_action( 'customize_register', 'desher_khobor_customize_register' );
 
 /**
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
-function wp_theme_boilerplate_customize_preview_js() {
-	wp_enqueue_script( 'wp_theme_boilerplate_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20151215', true );
+function desher_khobor_customize_preview_js() {
+	wp_enqueue_script( 'desher_khobor_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20151215', true );
 }
-add_action( 'customize_preview_init', 'wp_theme_boilerplate_customize_preview_js' );
+add_action( 'customize_preview_init', 'desher_khobor_customize_preview_js' );

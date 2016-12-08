@@ -1,10 +1,10 @@
 <?php
 /**
- * wp-theme-boilerplate functions and definitions.
+ * desher-khobor functions and definitions.
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package wp-theme-boilerplate
+ * @package desher-khobor
  */
 
 // Implement the Custom Header feature.

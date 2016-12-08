@@ -4,7 +4,7 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package wp-theme-boilerplate
+ * @package dehser-khobor
  */
 
 /**
@@ -13,7 +13,7 @@
  * @param array $classes Classes for the body element.
  * @return array
  */
-function wp_theme_boilerplate_body_classes( $classes ) {
+function desher_khobor_body_classes( $classes ) {
 	// Adds a class of group-blog to blogs with more than 1 published author.
 	if ( is_multi_author() ) {
 		$classes[] = 'group-blog';
@@ -26,14 +26,14 @@ function wp_theme_boilerplate_body_classes( $classes ) {
 
 	return $classes;
 }
-add_filter( 'body_class', 'wp_theme_boilerplate_body_classes' );
+add_filter( 'body_class', 'desher_khobor_body_classes' );
 
 /**
  * Add a pingback url auto-discovery header for singularly identifiable articles.
  */
-function wp_theme_boilerplate_pingback_header() {
+function desher_khobor_pingback_header() {
 	if ( is_singular() && pings_open() ) {
 		echo '<link rel="pingback" href="', bloginfo( 'pingback_url' ), '">';
 	}
 }
-add_action( 'wp_head', 'wp_theme_boilerplate_pingback_header' );
+add_action( 'wp_head', 'desher_khobor_pingback_header' );
