@@ -23,3 +23,8 @@ include_once( get_template_directory() . '/inc/navwalker.php' );
 include_once( get_template_directory() . '/inc/setup.php' );
 // Custom template tags for this theme.
 include_once( get_template_directory() . '/inc/template-tags.php' );
+// Bangla date converter.
+include_once( get_template_directory() . '/inc/bangla-date.php' );
+// Integrating Kirki with our theme
+include_once( get_template_directory() . '/inc/include-kirki.php' );
+include_once( get_template_directory() . '/inc/desherkhobor-kirki.php' );

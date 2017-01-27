@@ -6,7 +6,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package wp-theme-boilerplate
+ * @package desher-khobor
  */
 
 ?>
@@ -25,8 +25,15 @@
 
         <div id="page" class="site">
 
+            <?php get_template_part( 'template-parts/header/header', 'top' ); ?>
+
             <header id="masthead" class="site-header" role="banner">
-                <div class="site-branding text-center">
+                <div class="site-branding">
+
+                    <div class="custom-header-media">
+                        <?php the_custom_header_markup(); ?>
+                    </div>
+
                     <?php
                     if ( is_front_page() && is_home() ) : ?>
                         <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
@@ -37,36 +44,20 @@
 
                     $description = get_bloginfo( 'description', 'display' );
                     if ( $description || is_customize_preview() ) : ?>
-                        <h6 class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></h6>
+                        <h6 class="site-description"><?php echo $description; ?></h6>
                     <?php
                     endif; ?>
                 </div><!-- .site-branding -->
 
-                <nav id="site-navigation" class="navbar navbar-default main-navigation" role="navigation">
-                    <div class="container">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-                        <?php
-                            wp_nav_menu( array(
-                                'menu'              => 'primary',
-                                'theme_location'    => 'primary',
-                                'depth'             =>  2,
-                                'container'         => 'div',
-                                'container_class'   => 'collapse navbar-collapse',
-                                'container_id'      => 'bs-example-navbar-collapse-1',
-                                'menu_class'        => 'nav navbar-nav',
-                                'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
-                                'walker'            => new wp_bootstrap_navwalker())
-                            );
-                        ?>
-                    </div> <!-- .container -->
-                </nav> <!-- #site-navigation -->
+                <div class="col-sm-12">
+                    <div class="row">
+                        <?php get_template_part( 'template-parts/header/header', 'headlines' ); ?>
+                    </div>
+                </div>
+
+                <?php if ( has_nav_menu( 'primary' ) ) : ?>
+                    <?php get_template_part( 'template-parts/navigation/navigation', 'primary' ); ?>
+                <?php endif; ?>
             </header> <!-- #masthead -->
 
             <div id="content" class="site-content">

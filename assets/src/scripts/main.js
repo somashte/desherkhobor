@@ -1,4 +1,4 @@
-(function($) {
+jQuery(document).ready(function( $ ) {
   // Load Events
-  $(document).ready();
-})(jQeuery); // Fully reference jQuery after this point.
+  console.log('ready!');
+});

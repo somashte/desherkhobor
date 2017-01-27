@@ -19,10 +19,8 @@ function desher_khobor_setup() {
     /*
      * Make theme available for translation.
      * Translations can be filed in the /languages/ directory.
-     * If you're building a theme based on desher-khobor, use a find and replace
-     * to change 'desher-khobor' to the name of your theme in all the template files.
      */
-    load_theme_textdomain( 'desher-khobor', get_template_directory() . '/languages' );
+    load_theme_textdomain( 'desherkhobor', get_template_directory() . '/languages' );
 
     // Add default posts and comments RSS feed links to head.
     add_theme_support( 'automatic-feed-links' );
@@ -44,7 +42,9 @@ function desher_khobor_setup() {
 
     // This theme uses wp_nav_menu() in one location.
     register_nav_menus( array(
-        'primary' => esc_html__( 'Primary Menu', 'desher-khobor' ),
+        'primary' => __( 'Primary Menu', 'desherkhobor' ),
+        'top'     => __( 'Top Single Nav', 'desherkhobor' ),
+        'footer'  => __( 'Footer Menu', 'desherkhobor' ),
     ) );
 
     /*
@@ -58,12 +58,6 @@ function desher_khobor_setup() {
         'gallery',
         'caption',
     ) );
-
-    // Set up the WordPress core custom background feature.
-    add_theme_support( 'custom-background', apply_filters( 'desher_khobor_custom_background_args', array(
-        'default-color' => 'ffffff',
-        'default-image' => '',
-    ) ) );
 }
 endif;
 add_action( 'after_setup_theme', 'desher_khobor_setup' );
@@ -87,9 +81,9 @@ add_action( 'after_setup_theme', 'desher_khobor_content_width', 0 );
  */
 function desher_khobor_widgets_init() {
     register_sidebar( array(
-        'name'          => esc_html__( 'Sidebar', 'desher-khobor' ),
+        'name'          => __( 'Sidebar', 'desherkhobor' ),
         'id'            => 'sidebar-1',
-        'description'   => esc_html__( 'Add widgets here.', 'desher-khobor' ),
+        'description'   => __( 'Add widgets here.', 'desherkhobor' ),
         'before_widget' => '<section id="%1$s" class="widget %2$s">',
         'after_widget'  => '</section>',
         'before_title'  => '<h5 class="widget-title">',
@@ -98,3 +92,35 @@ function desher_khobor_widgets_init() {
 }
 add_action( 'widgets_init', 'desher_khobor_widgets_init' );
 
+/**
+ * Filter the except length to 20 words.
+ *
+ * @param int $length Excerpt length.
+ * @return int (Maybe) modified excerpt length.
+ */
+function wpdocs_custom_excerpt_length( $length ) {
+    return 24;
+}
+add_filter( 'excerpt_length', 'wpdocs_custom_excerpt_length', 999 );
+
+/**
+ * Replaces "[...]" (appended to automatically generated excerpts) with ... and
+ * a 'Continue reading' link.
+ *
+ * @since Twenty Seventeen 1.0
+ *
+ * @return string 'Continue reading' link prepended with an ellipsis.
+ */
+function desherkhobor_excerpt_more( $link ) {
+    if ( is_admin() ) {
+        return $link;
+    }
+
+    $link = sprintf( '<a href="%1$s" class="more-link">%2$s</a>',
+        esc_url( get_permalink( get_the_ID() ) ),
+        /* translators: %s: Name of current post */
+        sprintf( __( 'বিস্তারিত', 'desherkhobor' ), get_the_title( get_the_ID() ) )
+    );
+    return '.....' . $link;
+}
+add_filter( 'excerpt_more', 'desherkhobor_excerpt_more' );
