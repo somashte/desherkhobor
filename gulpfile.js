@@ -29,45 +29,45 @@
 
 // START Editing Project Variables.
 // Project related.
-var project              = 'DesherKhobor';                      // Project Name
-var projectURL           = 'http://desherkhobor.dev';                      // Project URL
+var project              = 'DesherKhobor';                            // Project Name
+var projectURL           = 'http://desherkhobor.dev';                 // Project URL
 var productURL           = './';                                      // Theme/Plugin URL. Leave it like it is, since our gulpfile.js lives in the root folder
 
 // Translation related.
-var text_domain          = 'desherkhobor';                    // Your textdomain here
-var destFile             = 'desherkhobor.pot';                // Name of the transalation file
-var packageName          = 'desherkhobor';                    // Package name
-var bugReport            = 'http:// jobayerarman.github.io/';         // Where can users report bugs
+var text_domain          = 'desherkhobor';                            // Your textdomain here
+var destFile             = 'desherkhobor.pot';                        // Name of the transalation file
+var packageName          = 'desherkhobor';                            // Package name
+var bugReport            = 'http://jobayerarman.github.io/';          // Where can users report bugs
 var lastTranslator       = 'Jobayer Arman <carbonjha@gmail.com>';     // Last translator Email ID
 var team                 = 'Jobayer Arman <carbonjha@email.com>';     // Team's Email ID
 var translatePath        = './languages'                              // Where to save the translation files
 
 // Style related
 var style = {
-  src    : './assets/src/styles/main.less',             // Path to main .less file
-  dest   : './assets/styles/',                           // Path to place the compiled CSS file
-  destFiles  : './assets/styles/*.+(css|map)'            // Destination files
+  src    : './assets/src/styles/main.less',                // Path to main .less file
+  dest   : './assets/styles/',                             // Path to place the compiled CSS file
+  destFiles  : './assets/styles/*.+(css|map)'              // Destination files
 };
 
 // JavaScript related
 var script = {
   src    : './assets/src/scripts/*.js',                    // Path to JS custom scripts folder
   dest   : './assets/scripts/',                            // Path to place the compiled JS custom scripts file
-  file   : 'script.js',                               // Compiled JS custom file name
+  file   : 'script.js',                                    // Compiled JS custom file name
   destFiles   : './assets/scripts/*.js'                    // Destination files
 }
 
 // Images related.
 var image = {
-  src    : './assets/src/img/**/*.{png,jpg,gif,svg}', // Source folder of images which should be optimized
-  dest   : './assets/img/'                            // Destination folder of optimized images
+  src    : './assets/src/img/**/*.{png,jpg,gif,svg}',      // Source folder of images which should be optimized
+  dest   : './assets/img/'                                 // Destination folder of optimized images
 }
 
 // Watch files paths.
 var watch = {
-  style  : './assets/src/styles/**/*.less',             // Path to all *.less files inside css folder and inside them
+  style  : './assets/src/styles/**/*.less',                // Path to all *.less files inside css folder and inside them
   script : './assets/src/scripts/*.js',                    // Path to all custom JS files
-  php    : './**/*.php'                               // Path to all PHP files
+  php    : './**/*.php'                                    // Path to all PHP files
 }
 
 // Browsers you care about for autoprefixing.
@@ -91,7 +91,7 @@ var gutil        = require('gulp-util');             // Utility functions for gu
 
 // CSS related plugins.
 var less         = require('gulp-less');             // Gulp pluign for Sass compilation.
-var cleancss     = require('gulp-clean-css');         // Minifies CSS files.
+var cleancss     = require('gulp-clean-css');        // Minifies CSS files.
 var autoprefixer = require('gulp-autoprefixer');     // Autoprefixing magic.
 var sourcemaps   = require('gulp-sourcemaps');       // Maps code in a compressed file (E.g. style.css) back to it’s original position in a source file.
 
@@ -120,7 +120,7 @@ var wpPot        = require('gulp-wp-pot');           // For generating the .pot 
 
 // production variable
 var config = {
-  production: !!gutil.env.production, // Two exclamations turn undefined into a proper false.
+  production: !!gutil.env.production,                // Two exclamations turn undefined into a proper false.
   sourceMaps:  !gutil.env.production
 };
 

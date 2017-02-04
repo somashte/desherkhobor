@@ -7,7 +7,7 @@
  */
 
 ?>
-<div class="row top-header-bar">
+<div class="row top-bar-content">
     <div class="col-md-3">
         <div class="date-widget bg-gray-darker"><p class="text-center">আজ <?php echo convert_bengali(date('D, F j, Y')); ?></p></div>
     </div>

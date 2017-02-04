@@ -23,12 +23,16 @@
 
     <body <?php body_class(); ?>>
 
-        <div id="page" class="site">
+        <div id="page" class="site container">
 
-            <?php get_template_part( 'template-parts/header/header', 'top' ); ?>
 
-            <header id="masthead" class="site-header" role="banner">
-                <div class="site-branding">
+            <header id="masthead" class="site-header row" role="banner">
+                <div class="header-top col-sm-12">
+                    <?php get_template_part( 'template-parts/header/header', 'top' ); ?>
+                </div> <!-- .header-top -->
+
+                <div class="site-branding col-sm-12">
+
 
                     <div class="custom-header-media">
                         <?php the_custom_header_markup(); ?>
@@ -60,4 +64,4 @@
                 <?php endif; ?>
             </header> <!-- #masthead -->
 
-            <div id="content" class="site-content">
+            <div id="content" class="site-content row">

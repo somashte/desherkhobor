@@ -7,7 +7,7 @@
 ?>
 
 <?php if ( has_nav_menu( 'footer' ) ) : ?>
-    <nav id="footer-navigation" class="navbar navbar-default footer-navigation" role="navigation">
+    <nav id="footer-navigation" class="navbar navbar-default footer-navigation col-md-12" role="navigation">
         <div class="row">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#footer-navbar">

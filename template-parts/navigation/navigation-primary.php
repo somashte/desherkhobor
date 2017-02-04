@@ -8,7 +8,7 @@
 
 ?>
 
-<nav id="site-navigation" class="navbar navbar-default main-navigation" role="navigation">
+<nav id="site-navigation" class="navbar navbar-default main-navigation col-md-12" role="navigation">
     <div class="row">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#primary-navbar">

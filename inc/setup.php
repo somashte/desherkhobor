@@ -124,3 +124,19 @@ function desherkhobor_excerpt_more( $link ) {
     return '.....' . $link;
 }
 add_filter( 'excerpt_more', 'desherkhobor_excerpt_more' );
+
+function desherkhobor_archive_title( $title ) {
+    if ( is_category() ) {
+        $title = single_cat_title( '', true );
+    } elseif ( is_tag() ) {
+        $title = single_tag_title( '', true );
+    } elseif ( is_author() ) {
+        $title = '<span class="author-vcard"' . get_the_author() . '</span>';
+    }
+    return $title;
+}
+add_filter( 'get_the_archive_title', 'desherkhobor_archive_title' );
+
+function desherkhobor_image_class( $classes ) {
+    return $classes . ' img-responsive';
+}

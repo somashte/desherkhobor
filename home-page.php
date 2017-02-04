@@ -11,7 +11,7 @@ get_header(); ?>
     <div class="section-wrapper">
         <section class="row">
             <div class="section-title">
-                <h4>প্রধান খবর</h4>
+                <h4><?php _e('প্রধান খবর', 'desher-khobor') ?></h4>
             </div>
             <div class="col-md-12">
                 <?php $category_1 = Kirki::get_option( 'dk', 'category_for_section_1' ); ?>
@@ -37,7 +37,7 @@ get_header(); ?>
 
         <section class="row">
             <div class="section-title">
-                <h4>স্থানীয় শীর্ষ</h4>
+                <h4><?php _e('স্থানীয় শীর্ষ', 'desher-khobor') ?></h4>
             </div>
             <div class="col-md-12">
                 <?php $category_2 = Kirki::get_option( 'dk', 'category_for_section_2' ); ?>
@@ -63,7 +63,7 @@ get_header(); ?>
 
         <section class="row">
             <div class="section-title">
-                <h4>অন্যান্য খবর</h4>
+                <h4><?php _e('অন্যান্য খবর', 'desher-khobor') ?></h4>
             </div>
             <div class="col-md-12">
                 <?php $category_3 = Kirki::get_option( 'dk', 'category_for_section_3' ); ?>
@@ -89,6 +89,6 @@ get_header(); ?>
     </div>
 </div>
 
-<div class="col-md-4"></div>
-
-<?php get_footer();
+<?php
+get_sidebar();
+get_footer();
