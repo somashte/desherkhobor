@@ -31,5 +31,5 @@
             );
             ?>
         </div> <!-- .container -->
-    </nav> <!-- #site-navigation -->
+    </nav> <!-- #footer-navigation -->
 <?php endif; ?>
