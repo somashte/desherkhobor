@@ -46,7 +46,7 @@ get_header(); ?>
                 endwhile;
             endif;
 
-            the_posts_navigation();
+            // the_posts_navigation();
 
         else :
 

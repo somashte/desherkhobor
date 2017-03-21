@@ -11,6 +11,7 @@
  *  <?php endif; // End header image check. ?>
  *
  * @link https://developer.wordpress.org/themes/functionality/custom-headers/
+ * @link https://codex.wordpress.org/Custom_Headers
  *
  * @package desher-khobor
  */
@@ -74,7 +75,7 @@ function desher_khobor_header_style() {
     ?>
         .site-title a,
         .site-description {
-            color: #<?php echo $header_text_color; ?>;
+            color: #<?php echo esc_attr( $header_text_color ); ?>;
         }
     <?php endif; ?>
     </style>

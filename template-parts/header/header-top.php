@@ -16,13 +16,7 @@
 
     <div class="col-md-3 <?php if ( ! has_nav_menu( 'top' ) ) : ?> col-md-offset-6 <?php endif; ?>">
         <div class="social-links pull-right">
-            <ul class="list-inline">
-                <li><a href="#" class="facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i></a></li>
-                <li><a href="#" class="twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i></a></li>
-                <li><a href="#" class="google-plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i></a></li>
-                <li><a href="#" class="linkedin"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i></a></li>
-                <li><a href="#" class="rss"><i class="fa fa-fw fa-rss" aria-hidden="true"></i></a></li>
-            </ul>
+            <?php desher_khobor_show_social_icons(); ?>
         </div>
     </div>
 </div> <!-- .top-header-bar -->

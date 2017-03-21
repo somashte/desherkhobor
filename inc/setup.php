@@ -98,10 +98,10 @@ add_action( 'widgets_init', 'desher_khobor_widgets_init' );
  * @param int $length Excerpt length.
  * @return int (Maybe) modified excerpt length.
  */
-function wpdocs_custom_excerpt_length( $length ) {
+function desher_khobor_custom_excerpt_length( $length ) {
     return 24;
 }
-add_filter( 'excerpt_length', 'wpdocs_custom_excerpt_length', 999 );
+add_filter( 'excerpt_length', 'desher_khobor_custom_excerpt_length', 999 );
 
 /**
  * Replaces "[...]" (appended to automatically generated excerpts) with ... and
@@ -139,4 +139,30 @@ add_filter( 'get_the_archive_title', 'desherkhobor_archive_title' );
 
 function desherkhobor_image_class( $classes ) {
     return $classes . ' img-responsive';
+}
+
+function desherkhobor_frontpage_news_section() {
+    $counter = 0;
+    while ( have_posts() ) : the_post(); ?>
+        <?php if ($counter < 2) : ?>
+            <article class="col-md-6" id="post-<?php the_ID(); ?>" role="article">
+                <div class="post-thumbnail"><?php the_post_thumbnail( 'medium', array( 'class' => 'img-responsive' )); ?></div>
+                <h6><a href="<?php echo esc_url( get_permalink( get_the_ID() ) ); ?>"><?php the_title(); ?> <br> <small><?php echo convert_bengali( get_the_date() ); ?></small></a></h6>
+                <p><?php the_excerpt(); ?></p>
+            </article>
+        <?php else : ?>
+            <?php echo '</div><br><div class="row">'; ?>
+            <article class="col-md-12" id="post-<?php the_ID(); ?>" role="article">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="post-thumbnail"><?php the_post_thumbnail( 'medium', array( 'class' => 'img-responsive' )); ?></div>
+                    </div> <!-- /post-thumbnail -->
+                    <div class="col-md-9">
+                        <h6><a href="<?php echo esc_url( get_permalink( get_the_ID() ) ); ?>"><?php the_title(); ?> <br> <small><?php echo convert_bengali( get_the_date() ); ?></small></a></h6>
+                        <p><?php the_excerpt(); ?></p>
+                    </div> <!-- /post title and excerpt -->
+                </div>
+            </article>
+        <?php endif; $counter++;
+    endwhile; // End the loop
 }
