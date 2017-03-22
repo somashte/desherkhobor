@@ -50,3 +50,5 @@ Temporary Items
 
 # Custom
 files/
+buildtheme/
+*.zip

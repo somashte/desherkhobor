@@ -6860,7 +6860,7 @@ fieldset[disabled] .btn-danger.active {
   padding-left: 0;
   padding-right: 0;
 }
-.headlines-area .headlines-posts marquee {
+.headlines-area .headlines-posts .marquee {
   width: 100%;
   padding-top: 11px;
 }

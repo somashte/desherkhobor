@@ -189,7 +189,6 @@ function desher_khobor_marquee_newsfeed( $wp_customize ) {
     ) );
 
     $tags = array();
-    var_dump( get_tags() );
     foreach ( get_tags() as $tag ) {
         $tags[$tag->term_id] = $tag->name;
     }

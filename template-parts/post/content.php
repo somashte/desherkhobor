@@ -19,26 +19,27 @@
         endif;
 
         if ( 'post' === get_post_type() ) : ?>
-        <div class="entry-meta">
-            <?php desher_khobor_posted_on(); ?>
-        </div><!-- .entry-meta -->
+            <div class="entry-meta">
+                <?php desher_khobor_posted_on(); ?>
+            </div><!-- .entry-meta -->
         <?php
         endif; ?>
     </header><!-- .entry-header -->
 
     <div class="entry-content row">
-        <div class="col-md-2">
-            <div class="post-thumbnail"><?php the_post_thumbnail( 'medium', array( 'class' => 'img-responsive' )); ?></div>
-        </div><!-- .post-thumbnail -->
-        <div class="col-md-10">
             <?php
-                if ( is_single() ) :
+                if ( is_single() ) : ?>
+                    <div class="col-md-12"> <?php
                     the_content( sprintf(
                         /* translators: %s: Name of current post. */
-                        wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'desher-khobor' ), array( 'span' => array( 'class' => array() ) ) ),
+                        wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'desherkhobor' ), array( 'span' => array( 'class' => array() ) ) ),
                         the_title( '<span class="screen-reader-text">"', '"</span>', false )
                     ) );
-                else :
+                else : ?>
+                    <div class="col-md-3">
+                        <div class="post-thumbnail"><?php the_post_thumbnail( 'medium', array( 'class' => 'img-responsive' )); ?></div>
+                    </div><!-- .post-thumbnail -->
+                    <div class="col-md-9"> <?php
                     the_excerpt( sprintf(
                         /* translators: %s: Name of current post. */
                         wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'desher-khobor' ), array( 'span' => array( 'class' => array() ) ) ),
@@ -46,14 +47,14 @@
                     ) );
                 endif;
                 wp_link_pages( array(
-                    'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'desher-khobor' ),
+                    'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'desherkhobor' ),
                     'after'  => '</div>',
                 ) );
             ?>
         </div><!-- .post-excerpt -->
     </div><!-- .entry-content -->
 
-    <footer class="entry-footer">
-        <?php desher_khobor_entry_footer(); ?>
-    </footer><!-- .entry-footer -->
+    <!-- <footer class="entry-footer">
+        <?php // desher_khobor_entry_footer(); ?>
+    </footer> --> <!-- .entry-footer -->
 </article><!-- #post-## -->

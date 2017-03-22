@@ -29,9 +29,36 @@
 
 // START Editing Project Variables.
 // Project related.
-var project              = 'DesherKhobor';                            // Project Name
+var project              = 'desherkhoborun';                          // Project Name
 var projectURL           = 'http://desherkhobor.dev';                 // Project URL
 var productURL           = './';                                      // Theme/Plugin URL. Leave it like it is, since our gulpfile.js lives in the root folder
+var build                = './buildtheme/';                           // Files that you want to package into a zip go here
+var buildInclude  = [
+    // include common file types
+    '**/*.php',
+    '**/*.html',
+    '**/*.css',
+    '**/*.js',
+    '**/*.jpg',
+    '**/*.png',
+    '**/*.svg',
+    '**/*.ttf',
+    '**/*.otf',
+    '**/*.eot',
+    '**/*.woff',
+    '**/*.woff2',
+
+    // include specific files and folders
+    'screenshot.png',
+
+    // exclude files and folders
+    '!node_modules/**/*',
+    '!files/**/*',
+    '!style.css.map',
+    '!gulpfile.js',
+    '!assets/src/styles/*',
+    '!assets/src/scripts/*'
+  ];
 
 // Translation related.
 var text_domain          = 'desherkhobor';                            // Your textdomain here
@@ -105,10 +132,12 @@ var imagemin     = require('gulp-imagemin');         // Minify PNG, JPEG, GIF an
 
 // Utility related plugins.
 var browserSync  = require('browser-sync').create(); // Reloads browser and injects CSS. Time-saving synchronised browser testing.
+var cache        = require('gulp-cache');
 var del          = require('del');                   // Delete files and folders
 var filter       = require('gulp-filter');           // Helps work on a subset of the original files by filtering them using globbing.
 var gulpSequence = require('gulp-sequence');         // Run a series of gulp tasks in order
 var gulpif       = require('gulp-if');               // A ternary gulp plugin: conditionally control the flow of vinyl objects.
+var ignore       = require('gulp-ignore');           // Helps with ignoring files and directories in our run tasks
 var lazypipe     = require('lazypipe');              // Lazypipe allows to create an immutable, lazily-initialized pipeline.
 var notify       = require('gulp-notify');           // Sends message notification to you
 var plumber      = require('gulp-plumber');          // Prevent pipe breaking caused by errors from gulp plugins
@@ -117,6 +146,7 @@ var rename       = require('gulp-rename');           // Renames files E.g. style
 var size         = require('gulp-size');             // Logs out the total size of files in the stream and optionally the individual file-sizes
 var sort         = require('gulp-sort');             // Recommended to prevent unnecessary changes in pot-file.
 var wpPot        = require('gulp-wp-pot');           // For generating the .pot file.
+var zip          = require('gulp-zip');              // Using to zip up our packaged theme into a tasty zip file that can be installed in WordPress!
 
 // production variable
 var config = {
@@ -165,7 +195,10 @@ gulp.task('clean:css', function() {
 gulp.task('clean:js', function() {
   return del([script.destFiles]);
 });
-gulp.task('clean:all', gulpSequence('clean:css', 'clean:js'));
+gulp.task('clean:build', function() {
+  return del(build);
+});
+gulp.task('clean:all', gulpSequence('clean:css', 'clean:js', 'clean:build'));
 
 /**
  * Task: `browser-sync`.
@@ -299,6 +332,43 @@ gulp.task( 'translate', function() {
       team           : team
    }))
    .pipe( gulp.dest(translatePath));
+});
+
+/**
+ * Clean gulp cache
+ */
+ gulp.task('clear', function () {
+   cache.clearAll();
+ });
+
+/**
+  * Build task that moves essential theme files for production-ready sites
+  *
+  * buildFiles copies all the files in buildInclude to build folder - check variable values at the top
+  * buildImages copies all the images from img folder in assets while ignoring images inside raw folder if any
+  */
+
+  gulp.task('buildFiles', function() {
+    return  gulp.src(buildInclude)
+      .pipe(gulp.dest(build))
+      .pipe(notify({ message: 'Copy from buildFiles complete', onLast: true }));
+  });
+
+/**
+  * Zipping build directory for distribution
+  *
+  * Taking the build folder, which has been cleaned, containing optimized files and zipping it up to send out as an installable theme
+  */
+  gulp.task('buildZip', function () {
+    return  gulp.src(build+'/**/')
+            .pipe(zip(project+'.zip'))
+            .pipe(gulp.dest('./'))
+            .pipe(notify({ message: 'Zip task complete', onLast: true }));
+  });
+
+// Package Distributable Theme
+gulp.task( 'build', function(cb) {
+  gulpSequence('clean:all', 'styles', 'scripts', 'buildFiles', 'buildZip', cb);
 });
 
 
