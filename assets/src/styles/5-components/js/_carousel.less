@@ -107,12 +107,12 @@
 
   // Set gradients for backgrounds
   &.left {
-    #gradient > .horizontal(@start-color: rgba(0,0,0,.5); @end-color: rgba(0,0,0,.0001));
+    // #gradient > .horizontal(@start-color: rgba(0,0,0,.5); @end-color: rgba(0,0,0,.0001));
   }
   &.right {
     left: auto;
     right: 0;
-    #gradient > .horizontal(@start-color: rgba(0,0,0,.0001); @end-color: rgba(0,0,0,.5));
+    // #gradient > .horizontal(@start-color: rgba(0,0,0,.0001); @end-color: rgba(0,0,0,.5));
   }
 
   // Hover/focus state
@@ -127,8 +127,8 @@
   // Toggles
   .icon-prev,
   .icon-next,
-  .glyphicon-chevron-left,
-  .glyphicon-chevron-right {
+  .fa-chevron-left,
+  .fa-chevron-right {
     position: absolute;
     top: 50%;
     margin-top: -10px;
@@ -136,13 +136,13 @@
     display: inline-block;
   }
   .icon-prev,
-  .glyphicon-chevron-left {
-    left: 50%;
+  .fa-chevron-left {
+    left: 20%;
     margin-left: -10px;
   }
   .icon-next,
-  .glyphicon-chevron-right {
-    right: 50%;
+  .fa-chevron-right {
+    right: 20%;
     margin-right: -10px;
   }
   .icon-prev,
@@ -217,15 +217,19 @@
 // Hidden by default for smaller viewports
 .carousel-caption {
   position: absolute;
-  left: 15%;
-  right: 15%;
-  bottom: 20px;
-  z-index: 10;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  left: 0;
+  bottom: 0;
+  z-index: 20;
+  padding: 2px 10px;
   color: @carousel-caption-color;
-  text-align: center;
+  text-align: left;
   text-shadow: @carousel-text-shadow;
+  background-color: @brand-red;
+  &:hover,
+  &:focus,
+  &:active {
+    color: @brand-green;
+  }
   & .btn {
     text-shadow: none; // No shadow for button elements in carousel-caption
   }
@@ -237,8 +241,8 @@
 
   // Scale up the controls a smidge
   .carousel-control {
-    .glyphicon-chevron-left,
-    .glyphicon-chevron-right,
+    .fa-chevron-left,
+    .fa-chevron-right,
     .icon-prev,
     .icon-next {
       width: (@carousel-control-font-size * 1.5);
@@ -246,11 +250,11 @@
       margin-top: (@carousel-control-font-size / -2);
       font-size: (@carousel-control-font-size * 1.5);
     }
-    .glyphicon-chevron-left,
+    .fa-chevron-left,
     .icon-prev {
       margin-left: (@carousel-control-font-size / -2);
     }
-    .glyphicon-chevron-right,
+    .fa-chevron-right,
     .icon-next {
       margin-right: (@carousel-control-font-size / -2);
     }
@@ -258,9 +262,8 @@
 
   // Show and left align the captions
   .carousel-caption {
-    left: 20%;
-    right: 20%;
-    padding-bottom: 30px;
+    left: 0;
+    right: 0;
   }
 
   // Move up the indicators

@@ -11,6 +11,12 @@ get_header(); ?>
 
 <div class="section-wrapper">
 
+    <section class="carousel-area row">
+        <div class="col-md-12">
+            <?php desher_khobor_show_carousel(); ?>
+        </div>
+    </section>
+
     <?php
     // Any inputs that aren't empty are stored in $active_sites array
     for ($i=1; $i <= 3 ; $i++) {

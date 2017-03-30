@@ -25,3 +25,5 @@ include_once( get_template_directory() . '/inc/setup.php' );
 include_once( get_template_directory() . '/inc/template-tags.php' );
 // Bangla date converter.
 include_once( get_template_directory() . '/inc/bangla-date.php' );
+// Bootstrap pagination
+include_once( get_template_directory() . '/inc/bootstrap-pagination.php' );

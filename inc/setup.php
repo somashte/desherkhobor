@@ -81,6 +81,15 @@ add_action( 'after_setup_theme', 'desher_khobor_content_width', 0 );
  */
 function desher_khobor_widgets_init() {
     register_sidebar( array(
+        'name'          => __( 'Front Page', 'desherkhobor' ),
+        'id'            => 'sidebar-front',
+        'description'   => __( 'Add widgets here.', 'desherkhobor' ),
+        'before_widget' => '<section id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</section>',
+        'before_title'  => '<h5 class="widget-title">',
+        'after_title'   => '</h5>',
+    ) );
+    register_sidebar( array(
         'name'          => __( 'Sidebar', 'desherkhobor' ),
         'id'            => 'sidebar-1',
         'description'   => __( 'Add widgets here.', 'desherkhobor' ),
@@ -99,7 +108,7 @@ add_action( 'widgets_init', 'desher_khobor_widgets_init' );
  * @return int (Maybe) modified excerpt length.
  */
 function desher_khobor_custom_excerpt_length( $length ) {
-    return 24;
+    return 30;
 }
 add_filter( 'excerpt_length', 'desher_khobor_custom_excerpt_length', 999 );
 
@@ -141,12 +150,28 @@ function desherkhobor_image_class( $classes ) {
     return $classes . ' img-responsive';
 }
 
+// responsive images auto class
+function add_image_responsive_class( $content ) {
+   global $post;
+   $pattern ="/<img(.*?)class=\"(.*?)\"(.*?)>/i";
+   $replacement = '<img$1class="$2 img-responsive center-block"$3>';
+   $content = preg_replace($pattern, $replacement, $content);
+   return $content;
+}
+add_filter('the_content', 'add_image_responsive_class');
+
+function add_image_class( $class ){
+    $class .= ' img-responsive center-block';
+    return $class;
+}
+add_filter( 'get_image_tag_class', 'add_image_class' );
+
 function desherkhobor_frontpage_news_section() {
     $counter = 0;
     while ( have_posts() ) : the_post(); ?>
         <?php if ($counter < 2) : ?>
             <article class="col-md-6" id="post-<?php the_ID(); ?>" role="article">
-                <div class="post-thumbnail"><?php the_post_thumbnail( 'medium', array( 'class' => 'img-responsive' )); ?></div>
+                <div class="post-thumbnail-lg"><?php the_post_thumbnail( 'medium', array( 'class' => 'img-responsive' )); ?></div>
                 <h6><a href="<?php echo esc_url( get_permalink( get_the_ID() ) ); ?>"><?php the_title(); ?> <br> <small><?php echo convert_bengali( get_the_date() ); ?></small></a></h6>
                 <p><?php the_excerpt(); ?></p>
             </article>
@@ -155,7 +180,7 @@ function desherkhobor_frontpage_news_section() {
             <article class="col-md-12" id="post-<?php the_ID(); ?>" role="article">
                 <div class="row">
                     <div class="col-md-3">
-                        <div class="post-thumbnail"><?php the_post_thumbnail( 'medium', array( 'class' => 'img-responsive' )); ?></div>
+                        <div class="post-thumbnail-sm"><?php the_post_thumbnail( 'medium', array( 'class' => 'img-responsive' )); ?></div>
                     </div> <!-- /post-thumbnail -->
                     <div class="col-md-9">
                         <h6><a href="<?php echo esc_url( get_permalink( get_the_ID() ) ); ?>"><?php the_title(); ?> <br> <small><?php echo convert_bengali( get_the_date() ); ?></small></a></h6>

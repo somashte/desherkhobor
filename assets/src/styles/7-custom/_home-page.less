@@ -1,5 +1,5 @@
 .section-wrapper {
-  margin: 40px 0;
+  margin: 4rem 0;
 
   section {
     &:not(:last-child) {
@@ -15,7 +15,7 @@
     width: 160px;
     text-align: center;
     padding: 6px 15px;
-    margin-bottom: 0;
+    margin: 0;
     color: #fff;
     background-color: @brand-green;
   }
@@ -23,4 +23,22 @@
 
 .news-list {
   margin-top: 15px;
+
+  .post-thumbnail-lg {
+    max-height: 200px;
+    overflow: hidden;
+
+    > img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  .post-thumbnail-sm {
+    padding-top: 1.5rem;
+
+    > img {
+      width: 100%;
+      height: auto;
+    }
+  }
 }

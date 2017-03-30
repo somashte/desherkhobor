@@ -37,12 +37,12 @@
                     ) );
                 else : ?>
                     <div class="col-md-3">
-                        <div class="post-thumbnail"><?php the_post_thumbnail( 'medium', array( 'class' => 'img-responsive' )); ?></div>
+                        <div class="post-thumbnail"><?php the_post_thumbnail( 'medium', array( 'class' => 'img-responsive center-block' )); ?></div>
                     </div><!-- .post-thumbnail -->
                     <div class="col-md-9"> <?php
                     the_excerpt( sprintf(
                         /* translators: %s: Name of current post. */
-                        wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'desher-khobor' ), array( 'span' => array( 'class' => array() ) ) ),
+                        wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'desherkhobor' ), array( 'span' => array( 'class' => array() ) ) ),
                         the_title( '<span class="screen-reader-text">"', '"</span>', false )
                     ) );
                 endif;

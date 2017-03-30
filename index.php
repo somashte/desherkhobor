@@ -46,8 +46,6 @@ get_header(); ?>
                 endwhile;
             endif;
 
-            // the_posts_navigation();
-
         else :
 
             get_template_part( 'template-parts/post/content', 'none' );
