@@ -3,7 +3,7 @@
  * Displays headlines
  *
  * @package Desher_Khobor
- * @version 1.0
+ * @version 2.4.2
  */
 
 ?>

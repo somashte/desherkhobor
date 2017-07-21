@@ -2,7 +2,7 @@
 /**
  * Desher Khobor Theme Customizer.
  *
- * @package desher-khobor
+ * @package desherkhobor
  */
 
 /**
