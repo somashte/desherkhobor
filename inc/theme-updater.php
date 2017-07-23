@@ -56,6 +56,16 @@ if ( ! class_exists( 'Theme_Updater' ) ) {
         }
 
         /**
+         * Check wether or not the transients need to be overruled and API needs to be called for every single page load
+         *
+         * @access private
+         * @return bool overrule or not
+         */
+        private function overrule_transients() {
+            return ( defined( 'WP_DEBUG' ) && WP_DEBUG ) || ( defined( 'WP_GITHUB_FORCE_UPDATE' ) || WP_GITHUB_FORCE_UPDATE );
+        }
+
+        /**
          * Set defaults
          *
          * @since 2.6.1
@@ -63,15 +73,13 @@ if ( ! class_exists( 'Theme_Updater' ) ) {
          */
         public function set_defaults() {
             // Store the data in this class instance for future calls
-            if ( ! isset( $this->github_data ) && empty( $this->github_data ) ) {
-                $update_data = $this->get_github_data();
-            }
+            $update_data = $this->get_github_data();
 
             if ( ! isset( $this->config['new_version'] ) )
                 $this->config['new_version'] = $update_data['tag_name'];
 
             if ( ! isset( $this->config['zip_url'] ) )
-                $this->config['zip_url'] = $update_data['zip_url'];
+                $this->config['zip_url'] = $update_data['zipball_url'];
 
             if ( ! isset( $this->config['github_url'] ) )
                 $this->config['github_url'] = $update_data['html_url'];
@@ -96,17 +104,23 @@ if ( ! class_exists( 'Theme_Updater' ) ) {
             } else {
                 $github_data = get_site_transient( $this->config['slug'].'_github_data' );
 
-                $query = $this->config['api_url'];
+                if ( $this->overrule_transients() || ( ! isset( $github_data ) || ! $github_data || '' == $github_data ) ) {
+                    $query = $this->config['api_url'];
 
-                $github_data = wp_remote_get( $query );
+                    $github_data = wp_remote_get( $query );
 
-                if ( is_wp_error( $github_data ) )
-                    return false;
+                    if ( is_wp_error( $github_data ) )
+                        return false;
 
-                $github_data = json_decode( $github_data['body'] );
+                    $github_data = json_decode( wp_remote_retrieve_body( $github_data ), true );
 
-                // refresh every 6 hours
-                set_site_transient( $this->config['slug'].'_github_data', $github_data, 60*60*6 );
+                    if( is_array( $github_data ) ) {
+                        $github_data = current( $github_data );
+                    }
+
+                    // refresh every 6 hours
+                    set_site_transient( $this->config['slug'].'_github_data', $github_data, 60*60*6 );
+                }
 
                 // Store the data in this class instance for future calls
                 $this->github_data = $github_data;
@@ -132,11 +146,13 @@ if ( ! class_exists( 'Theme_Updater' ) ) {
             $update = version_compare( $this->config['new_version'], $this->config['version'] );
 
             if ( 1 === $update ) {
-                $response              = new stdClass;
-                $response->new_version = $this->config['new_version'];
-                $response->slug        = $this->config['slug'];
-                $response->url         = $this->config['github_url'];
-                $response->package     = $this->config['zip_url'];
+
+                $response = array(
+                    'theme'       => $this->config['slug'],
+                    'new_version' => $this->config['new_version'],
+                    'package'     => $this->config['zip_url'],
+                    'url'         => $this->config['github_url']
+                );
 
                 // If response is false, don't alter the transient
                 if ( false !== $response )
