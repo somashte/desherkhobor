@@ -363,7 +363,7 @@ gulp.task( 'translate', function() {
     return  gulp.src(build+'/**/')
             .pipe(zip(project+'.zip'))
             .pipe(gulp.dest('./'))
-            .pipe(notify({ message: 'Zip task complete', onLast: true }));
+            // .pipe(notify({ message: 'Zip task complete', onLast: true }));
   });
 
 // Package Distributable Theme

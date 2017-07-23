@@ -39,3 +39,12 @@ include_once( get_template_directory() . '/inc/bootstrap-pagination.php' );
 
 // Theme Widgets
 include_once( get_template_directory() . '/inc/widgets.php' );
+
+// Theme Updater
+if( ! class_exists( 'Theme_Updater' ) ) {
+    require_once( get_template_directory() . '/inc/theme-updater.php' );
+
+    if ( is_admin() ) {
+        $updater = new Theme_Updater( 'somashte', 'desherkhobor', 'e8da06417ed30f222d7a03e7f61a33c3e5ca9a16' );
+    }
+}

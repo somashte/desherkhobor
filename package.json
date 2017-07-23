@@ -12,6 +12,10 @@
   "bugs": {
     "url": "https://github.com/jobayerarman/wp-theme-boilerplate/issues"
   },
+  "scripts": {
+    "dev": "gulp serve",
+    "build": "gulp build --production"
+  },
   "devDependencies": {
     "browser-sync": "^2.18.8",
     "del": "^3.0.0",

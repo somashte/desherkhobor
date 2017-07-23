@@ -10,9 +10,6 @@
 ?>
 
 <section class="no-results not-found">
-    <header class="page-header">
-        <h4 class="page-title"><?php esc_html_e( 'কোন পোষ্ট খুঁজে পাওয়া যায়নি', 'desherkhobor' ); ?></h4>
-    </header><!-- .page-header -->
 
     <div class="page-content">
         <?php
@@ -27,11 +24,8 @@
                 get_search_form();
 
         else : ?>
+            <h2 class="no-results-text"><?php esc_html_e( 'কোন পোষ্ট খুঁজে পাওয়া যায়নি', 'desherkhobor' ); ?></h2>
 
-            <p><?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'desherkhobor' ); ?></p>
-            <?php
-                get_search_form();
-
-        endif; ?>
+            <?php endif; ?>
     </div><!-- .page-content -->
 </section><!-- .no-results -->
