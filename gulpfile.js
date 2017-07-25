@@ -29,7 +29,7 @@
 
 // START Editing Project Variables.
 // Project related.
-var project              = 'desherkhoborun';                          // Project Name
+var project              = 'desherkhobor';                          // Project Name
 var projectURL           = 'http://desherkhobor.dev';                 // Project URL
 var productURL           = './';                                      // Theme/Plugin URL. Leave it like it is, since our gulpfile.js lives in the root folder
 var build                = './buildtheme/';                           // Files that you want to package into a zip go here

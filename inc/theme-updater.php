@@ -1,5 +1,7 @@
 <?php
 
+require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+
 if ( ! class_exists( 'Theme_Updater' ) ) {
 
     class Theme_Updater {
@@ -21,7 +23,6 @@ if ( ! class_exists( 'Theme_Updater' ) ) {
          *
          * @since 1.0
          * @param array $config the configuration required for the updater to work
-         * @see has_minimum_config()
          * @return void
          */
         public function __construct( $config = array() ) {
@@ -39,30 +40,8 @@ if ( ! class_exists( 'Theme_Updater' ) ) {
             // Check for updates
             add_filter( 'pre_set_site_transient_update_themes', array( $this, 'check_for_update' ), 10, 1 );
 
-            add_filter( 'upgrader_post_install', array( $this, 'after_install' ), 10, 3 );
-
-            // set timeout
-            add_filter( 'http_request_timeout', array( $this, 'http_request_timeout' ) );
-        }
-
-        /**
-         * Callback fn for the http_request_timeout filter
-         *
-         * @since 2.6.1
-         * @return int timeout value
-         */
-        public function http_request_timeout() {
-            return 2;
-        }
-
-        /**
-         * Check wether or not the transients need to be overruled and API needs to be called for every single page load
-         *
-         * @access private
-         * @return bool overrule or not
-         */
-        private function overrule_transients() {
-            return ( defined( 'WP_DEBUG' ) && WP_DEBUG ) || ( defined( 'WP_GITHUB_FORCE_UPDATE' ) || WP_GITHUB_FORCE_UPDATE );
+            // Rename this zip file to the accurate theme folder
+            add_filter( 'upgrader_source_selection', array( $this, 'upgrader_source_selection' ), 10, 3 );
         }
 
         /**
@@ -104,7 +83,7 @@ if ( ! class_exists( 'Theme_Updater' ) ) {
             } else {
                 $github_data = get_site_transient( $this->config['slug'].'_github_data' );
 
-                if ( $this->overrule_transients() || ( ! isset( $github_data ) || ! $github_data || '' == $github_data ) ) {
+                if ( ( ! isset( $github_data ) || ! $github_data || '' == $github_data ) ) {
                     $query = $this->config['api_url'];
 
                     $github_data = wp_remote_get( $query );
@@ -163,24 +142,36 @@ if ( ! class_exists( 'Theme_Updater' ) ) {
         }
 
         /**
-         * Upgrader/Updater
-         * Move & activate the plugin, echo the update message
+         * Used for renaming of sources to ensure correct directory name.
          *
-         * @since 1.0
-         * @param boolean $true       always true
-         * @param mixed   $hook_extra not used
-         * @param array   $result     the result of the move
-         * @return array $result the result of the move
+         * @since WordPress 4.4.0 The $hook_extra parameter became available.
+         *
+         * @param string                           $source
+         * @param string                           $remote_source
+         * @param \Theme_Upgrader $upgrader
+         * @param array                            $hook_extra
+         *
+         * @return string
          */
-        public function after_install( $true, $hook_extra, $result ) {
+        public function upgrader_source_selection( $source, $remote_source, $upgrader, $hook_extra = null ) {
             global $wp_filesystem;
 
-            // Move & Activate
-            $install_directory = get_theme_root() . '/' . $this->repository; // Our theme directory
-            $wp_filesystem->move( $result['destination'], $install_directory ); // Move files to the theme dir
-            $result['destination'] = $install_directory; // Set the destination for the rest of the stack
+            /*
+             * Rename themes.
+             */
+            if( isset( $source, $remote_source, $upgrader->skin->theme ) ) {
+                $corrected_source = $remote_source . '/' . $upgrader->skin->theme . '/';
 
-            return $result;
+                if( @rename($source, $corrected_source ) ) {
+                    $upgrader->skin->feedback("Theme folder name corrected to: " . $upgrader->skin->theme );
+                    return $corrected_source;
+                } else {
+                    $upgrader->skin->feedback("Unable to rename downloaded theme.");
+                    return new WP_Error();
+                }
+            }
+
+            return $source;
         }
     }
 }
