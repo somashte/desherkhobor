@@ -13,7 +13,7 @@
  * @link https://developer.wordpress.org/themes/functionality/custom-headers/
  * @link https://codex.wordpress.org/Custom_Headers
  *
- * @package desher-khobor
+ * @package desher-khobor-unv
  */
 
 /**
@@ -34,7 +34,7 @@ function desher_khobor_custom_header_setup() {
         'default-image' => array(
             'url'           => '%s/assets/images/header.png',
             'thumbnail_url' => '%s/assets/images/header.png',
-            'description'   => __( 'Default Header Image', 'desherkhobor' ),
+            'description'   => __( 'Default Header Image', 'desher-khobor-unv' ),
         ),
     ) );
 }
@@ -59,7 +59,7 @@ function desher_khobor_header_style() {
 
     // If we get this far, we have custom styles. Let's do this.
     ?>
-    <style id="desherkhobor-custom-header-styles" type="text/css">
+    <style id="desher-khobor-unv-custom-header-styles" type="text/css">
     <?php
         // Has the text been hidden?
         if ( 'blank' == $header_text_color ) :

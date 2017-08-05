@@ -2,8 +2,7 @@
 /**
  * Displays top header
  *
- * @package Desher_Khobor
- * @version 1.0
+ * @package desher-khobor-unv
  */
 
 ?>

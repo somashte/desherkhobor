@@ -2,7 +2,7 @@
 /**
  * Desher Khobor Theme Customizer.
  *
- * @package desherkhobor
+ * @package desher-khobor-unv
  */
 
 /**
@@ -32,7 +32,7 @@ function desher_khobor_customize_preview_js() {
 function desher_khobor_theme_option( $wp_customize ) {
     // panel
     $wp_customize->add_panel( 'theme_options', array(
-        'title'          => __( 'Theme Options', 'desherkhobor' ),
+        'title'          => __( 'Theme Options', 'desher-khobor-unv' ),
         'capability'     => 'edit_theme_options',
         'priority'       => 130,
         'theme_supports' => '',
@@ -70,8 +70,8 @@ function desher_khobor_social_link_section( $wp_customize ) {
 
     // section
     $wp_customize->add_section( 'desher_khobor_social_icon', array(
-        'title'       => __( 'Social Media Links', 'desherkhobor' ),
-        'description' => __( 'Add the URL for each of your social profiles.', 'desherkhobor' ),
+        'title'       => __( 'Social Media Links', 'desher-khobor-unv' ),
+        'description' => __( 'Add the URL for each of your social profiles.', 'desher-khobor-unv' ),
         'priority'    => 10,
         'panel'       => 'theme_options' // Not typically needed.
     ) );
@@ -150,8 +150,8 @@ function desher_khobor_show_social_icons() {
 function desher_khobor_marquee_newsfeed( $wp_customize ) {
     // section
     $wp_customize->add_section( 'marquee_newsfeed', array(
-        'title'       => __( 'Top Scrolling Newsfeed', 'desherkhobor' ),
-        'description' => __( 'Select Tag for Top Scrolling Newsfeed', 'desherkhobor' ),
+        'title'       => __( 'Top Scrolling Newsfeed', 'desher-khobor-unv' ),
+        'description' => __( 'Select Tag for Top Scrolling Newsfeed', 'desher-khobor-unv' ),
         'priority'    => 20,
         'panel'       => 'theme_options' // Not typically needed.
     ) );
@@ -168,7 +168,7 @@ function desher_khobor_marquee_newsfeed( $wp_customize ) {
     ) );
     // control
     $wp_customize->add_control( 'tag_selection', array(
-        'label'       => __('Select Tag', 'desherkhobor'),
+        'label'       => __('Select Tag', 'desher-khobor-unv'),
         'type'        => 'select',
         'choices'     => $tags,
         'section'     => 'marquee_newsfeed',
@@ -197,8 +197,8 @@ function show_headlines( $tag_name, $post_count = 15 ) {
 function desher_khobor_homepage_news_slider( $wp_customize ) {
     // section
     $wp_customize->add_section( 'home_news_slider', array(
-        'title'          => __( 'Front Page News Carousel', 'desherkhobor' ),
-        'description'    => __( 'Settings for Front Page Image Corousel', 'desherkhobor' ),
+        'title'          => __( 'Front Page News Carousel', 'desher-khobor-unv' ),
+        'description'    => __( 'Settings for Front Page Image Corousel', 'desher-khobor-unv' ),
         'panel'          => 'theme_options',
         'priority'       => 30,
     ) );
@@ -220,16 +220,16 @@ function desher_khobor_homepage_news_slider( $wp_customize ) {
     ) );
     // control
     $wp_customize->add_control( 'slider_tag', array(
-        'label'       => __('Select Tag', 'desherkhobor'),
-        'description' => __( 'Select news tag to show.', 'desherkhobor' ),
+        'label'       => __('Select Tag', 'desher-khobor-unv'),
+        'description' => __( 'Select news tag to show.', 'desher-khobor-unv' ),
         'type'        => 'select',
         'choices'     => $tags,
         'section'     => 'home_news_slider',
         'priority'    => 10
     ) );
     $wp_customize->add_control( 'slider_number', array(
-        'label'       => __('Number of Posts', 'desherkhobor'),
-        'description' => __( 'Input number of post to show. (Min = 3, Max = 25)', 'desherkhobor' ),
+        'label'       => __('Number of Posts', 'desher-khobor-unv'),
+        'description' => __( 'Input number of post to show. (Min = 3, Max = 25)', 'desher-khobor-unv' ),
         'type'        => 'number',
         'input_attrs' => array('min' => '3', 'max' => '25'),
         'section'     => 'home_news_slider',
@@ -258,7 +258,7 @@ function desher_khobor_show_carousel() {
         <?php while ( $carousel->have_posts() ) : $carousel->the_post(); ?>
             <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large' ); ?>
             <div style="background: url('<?php echo $image[0]; ?>') no-repeat center top; background-size: cover; height: 400px; width: 100%;" class="item <?php echo ( $active = $active && !$i ) ? 'active' : '' ;?>">
-                <a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( '%s', 'desherkhobor' ), the_title_attribute( 'echo=0' ) ) ); ?>" class="carousel-caption" rel="bookmark"><h5><?php the_title(); ?></h5></a>
+                <a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( '%s', 'desher-khobor-unv' ), the_title_attribute( 'echo=0' ) ) ); ?>" class="carousel-caption" rel="bookmark"><h5><?php the_title(); ?></h5></a>
             </div>
         <?php $i++; endwhile;
     } ?>
@@ -282,7 +282,7 @@ function desher_khobor_show_carousel() {
 function desher_khobor_homepage_news_category( $wp_customize ) {
     // section
     $wp_customize->add_section( 'home_news_category', array(
-        'title'          => __( 'Front Page News Categories', 'desherkhobor' ),
+        'title'          => __( 'Front Page News Categories', 'desher-khobor-unv' ),
         'panel'          => 'theme_options',
         'priority'       => 40,
     ) );
@@ -304,7 +304,7 @@ function desher_khobor_homepage_news_category( $wp_customize ) {
         ) );
         // control
         $wp_customize->add_control('category_' . $i, array(
-            'label'    => sprintf( __( 'Section %d', 'desherkhobor'), $i ),
+            'label'    => sprintf( __( 'Section %d', 'desher-khobor-unv'), $i ),
             'section'  => __( 'home_news_category' ),
             'type'     => 'select',
             'choices'  => $cats,

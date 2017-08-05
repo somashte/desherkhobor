@@ -7,7 +7,7 @@
         wp_register_style('desher_khobor_main_style', get_template_directory_uri() . '/assets/styles/main.css');
 
         // Enqueue Styles
-        wp_enqueue_style( 'desher-khobor-style', get_stylesheet_uri() );
+        wp_enqueue_style( 'desher-khobor-unv-style', get_stylesheet_uri() );
         wp_enqueue_style( 'font-awesome_style' );
         wp_enqueue_style( 'desher_khobor_main_style' );
     }

@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
  *
- * @package wp-theme-boilerplate
+ * @package desher-khobor-unv
  */
 
 get_header(); ?>

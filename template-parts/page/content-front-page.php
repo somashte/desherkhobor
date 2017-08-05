@@ -2,7 +2,7 @@
 /**
  * Displays content for front page
  *
- * @package desher-khobor
+ * @package desher-khobor-unv
  * @since 2.2.0
  * @version 1.0
  */
@@ -39,7 +39,7 @@ get_header(); ?>
                     </div>
                     <div class="news-list">
                         <div class="row">
-                            <?php desherkhobor_frontpage_news_section(); ?>
+                            <?php desher-khobor-unv_frontpage_news_section(); ?>
                         </div>
                     </div>
                 </div>

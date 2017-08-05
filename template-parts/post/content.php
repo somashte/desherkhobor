@@ -4,7 +4,7 @@
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package desher-khobor
+ * @package desher-khobor-unv
  */
 
 ?>
@@ -32,7 +32,7 @@
                     <div class="col-md-12"> <?php
                     the_content( sprintf(
                         /* translators: %s: Name of current post. */
-                        wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'desherkhobor' ), array( 'span' => array( 'class' => array() ) ) ),
+                        wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'desher-khobor-unv' ), array( 'span' => array( 'class' => array() ) ) ),
                         the_title( '<span class="screen-reader-text">"', '"</span>', false )
                     ) );
                 else : ?>
@@ -42,12 +42,12 @@
                     <div class="col-md-9"> <?php
                     the_excerpt( sprintf(
                         /* translators: %s: Name of current post. */
-                        wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'desherkhobor' ), array( 'span' => array( 'class' => array() ) ) ),
+                        wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'desher-khobor-unv' ), array( 'span' => array( 'class' => array() ) ) ),
                         the_title( '<span class="screen-reader-text">"', '"</span>', false )
                     ) );
                 endif;
                 wp_link_pages( array(
-                    'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'desherkhobor' ),
+                    'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'desher-khobor-unv' ),
                     'after'  => '</div>',
                 ) );
             ?>

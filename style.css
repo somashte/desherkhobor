@@ -1,9 +1,18 @@
 /*
-Theme Name: Desher Khobor (UN Volunteer)
+Theme Name: Desher Khobor UNV
+Theme URI: http://desherkhobor.net
 Author: Jobayer Arman
 Author URI: http://jobayerarman.github.io/
 Description: WordPress Theme for the desherkhobor.net website.
-Version: 2.4.1
-Text Domain: desherkhobor
-Tags:
+Version: 2.6.1
+Text Domain: desher-khobor-unv
+Tags: news, theme-options
 */
+
+.sticky {}
+.screen-reader-text {}
+.gallery-caption {}
+.bypostauthor {}
+.alignright {}
+.alignleft {}
+.aligncenter {}

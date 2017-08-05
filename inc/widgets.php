@@ -2,8 +2,7 @@
 /**
  * Desher Khobor Custom Widgets
  *
- * @package desherkhobor
- * @version 2.4.2
+ * @package desher-khobor-unv
  */
 
 class DK_Category_Widget extends WP_Widget {
@@ -14,7 +13,7 @@ class DK_Category_Widget extends WP_Widget {
     public function __construct() {
         $widget_ops = array(
             'classname' => 'dk_category_news_widget',
-            'description' => __('Desher Khobor Category News Wideget', 'desherkhobor')
+            'description' => __('Desher Khobor Category News Wideget', 'desher-khobor-unv')
         );
         parent::__construct( 'dk_category_news_widget', 'DK Category News List Widgets', $widget_ops );
     }
@@ -35,9 +34,9 @@ class DK_Category_Widget extends WP_Widget {
      * @param array $instance The widget options
      */
     public function form( $instance ) {
-        $title    = ! empty( $instance['title'] ) ? $instance['title'] : esc_html__( 'Widget Name', 'desherkhobor' );
+        $title    = ! empty( $instance['title'] ) ? $instance['title'] : esc_html__( 'Widget Name', 'desher-khobor-unv' );
         $number   = ! empty( $instance['number'] ) ? absint( $instance['number'] ) : absint( '5' );
-        $category = ! empty( $instance['category'] ) ? $instance['category'] : __( 'Select a category', 'desherkhobor' );
+        $category = ! empty( $instance['category'] ) ? $instance['category'] : __( 'Select a category', 'desher-khobor-unv' );
         ?>
 
         <p>
@@ -46,7 +45,7 @@ class DK_Category_Widget extends WP_Widget {
         </p>
 
         <p>
-            <label for="<?php echo $this->get_field_id('category'); ?>"><?php _e('News Category:', 'desherkhobor'); ?></label>
+            <label for="<?php echo $this->get_field_id('category'); ?>"><?php _e('News Category:', 'desher-khobor-unv'); ?></label>
             <select id="<?php echo $this->get_field_id('category'); ?>"  name="<?php echo $this->get_field_name('category'); ?>">
                 <?php for($x=1;$x<=10;$x++): ?>
                 <option <?php echo $x == $category ? 'selected="selected"' : '';?> value="<?php echo $x;?>"><?php echo $x; ?></option>
@@ -55,7 +54,7 @@ class DK_Category_Widget extends WP_Widget {
         </p>
 
         <p>
-            <label for="<?php echo $this->get_field_id('number'); ?>"><?php _e('Number of Posts:', 'desherkhobor'); ?></label>
+            <label for="<?php echo $this->get_field_id('number'); ?>"><?php _e('Number of Posts:', 'desher-khobor-unv'); ?></label>
             <select id="<?php echo $this->get_field_id('number'); ?>"  name="<?php echo $this->get_field_name('number'); ?>">
                 <?php for($x=1;$x<=10;$x++): ?>
                 <option <?php echo $x == $number ? 'selected="selected"' : '';?> value="<?php echo $x;?>"><?php echo $x; ?></option>

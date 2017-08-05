@@ -29,10 +29,11 @@
 
 // START Editing Project Variables.
 // Project related.
-var project              = 'desherkhobor';                          // Project Name
-var projectURL           = 'http://desherkhobor.dev';                 // Project URL
-var productURL           = './';                                      // Theme/Plugin URL. Leave it like it is, since our gulpfile.js lives in the root folder
-var build                = './buildtheme/';                           // Files that you want to package into a zip go here
+var project              = 'desher-khobor-unv';                     // Project Name
+var funcName             = 'desher_khobor';                         // Function Name
+var projectURL           = 'http://desherkhobor.dev';               // Project URL
+var productURL           = './';                                    // Theme/Plugin URL. Leave it like it is, since our gulpfile.js lives in the root folder
+var build                = './build/';                              // Files that you want to package into a zip go here
 var buildInclude  = [
     // include common file types
     '**/*.php',
@@ -61,9 +62,9 @@ var buildInclude  = [
   ];
 
 // Translation related.
-var text_domain          = 'desherkhobor';                            // Your textdomain here
+var text_domain          = 'desher-khobor-unv';                       // Your textdomain here
 var destFile             = 'desherkhobor.pot';                        // Name of the transalation file
-var packageName          = 'desherkhobor';                            // Package name
+var packageName          = 'desher-khobor-unv';                       // Package name
 var bugReport            = 'http://jobayerarman.github.io/';          // Where can users report bugs
 var lastTranslator       = 'Jobayer Arman <carbonjha@gmail.com>';     // Last translator Email ID
 var team                 = 'Jobayer Arman <carbonjha@email.com>';     // Team's Email ID
@@ -130,6 +131,15 @@ var uglify       = require('gulp-uglify');           // Minifies JS files
 // Image realted plugins.
 var imagemin     = require('gulp-imagemin');         // Minify PNG, JPEG, GIF and SVG images with imagemin.
 
+// Github related plugins
+var fs           = require('fs');
+var git          = require('gulp-git');
+var bump         = require('gulp-bump');
+var shell        = require('gulp-shell');
+var prompt       = require('gulp-prompt');
+var replace      = require('gulp-replace');
+var gitChangelog = require('gulp-conventional-changelog');
+
 // Utility related plugins.
 var browserSync  = require('browser-sync').create(); // Reloads browser and injects CSS. Time-saving synchronised browser testing.
 var cache        = require('gulp-cache');
@@ -185,6 +195,47 @@ function errorLog(error) {
 };
 
 /**
+ * Theme Dev Setup
+ *
+ * Task:
+ */
+gulp.task('update-function-name', function(done) {
+  return gulp.src([ './**/*.php' ])
+    .pipe(replace( 'wp_theme_boilerplate', funcName ))
+    .pipe(gulp.dest( './' ))
+    done();
+});
+gulp.task('update-package-name', function(done) {
+  return gulp.src([ './**/*.php' ])
+    .pipe(replace( 'desher-khobor-unv-unv', project ))
+    .pipe(gulp.dest( './' ))
+    done();
+});
+gulp.task('update:all-name', gulpSequence('update-function-name', 'update-package-name'));
+
+/**
+ * Github release workflow
+ *
+ * Task: bump version
+ */
+function getPackageJsonVersion() {
+  return JSON.parse(fs.readFileSync('./package.json', 'utf8')).version;
+}
+gulp.task( 'bump-version', function (done) {
+  return gulp.src(['./package.json'])
+    .pipe(bump({type: 'patch'}).on('error', gutil.log))
+    .pipe(gulp.dest('./'))
+    done();
+});
+gulp.task('update-wp-style-css', function(done) {
+  return gulp.src(['./style.css'])
+    .pipe(replace( /(Version:)(\s*)(.*)/, '$1$2' + getPackageJsonVersion() ))
+    .pipe(gulp.dest('./'))
+    done();
+});
+gulp.task('bump:all', gulpSequence('bump-version', 'update-wp-style-css'));
+
+/**
  * Task: Cleanup
  *
  * Cleans destination files
@@ -215,6 +266,9 @@ gulp.task( 'browser-sync', function() {
 
     // Project URL.
     proxy: projectURL,
+
+    // Will not attempt to determine your network status, assumes you're ONLINE
+    online: true,
 
     // `true` Automatically open the browser with BrowserSync live server.
     // `false` Stop the browser from automatically opening.
@@ -347,7 +401,6 @@ gulp.task( 'translate', function() {
   * buildFiles copies all the files in buildInclude to build folder - check variable values at the top
   * buildImages copies all the images from img folder in assets while ignoring images inside raw folder if any
   */
-
   gulp.task('buildFiles', function() {
     return  gulp.src(buildInclude)
       .pipe(gulp.dest(build))

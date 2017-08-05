@@ -1,10 +1,10 @@
 <?php
 /**
- * desher-khobor functions and definitions.
+ * desher-khobor-unv functions and definitions.
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package desher-khobor
+ * @package desher-khobor-unv
  */
 
 // Implement the Custom Header feature.

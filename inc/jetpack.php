@@ -4,7 +4,7 @@
  *
  * @link https://jetpack.com/
  *
- * @package desher-khobor
+ * @package desher-khobor-unv
  */
 
 /**
