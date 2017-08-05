@@ -1,10 +1,10 @@
 <?php
 /**
- * desher-khobor functions and definitions.
+ * desher-khobor-unv functions and definitions.
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package desher-khobor
+ * @package desher-khobor-unv
  */
 
 if ( ! function_exists( 'desher_khobor_setup' ) ) :
@@ -20,7 +20,7 @@ function desher_khobor_setup() {
      * Make theme available for translation.
      * Translations can be filed in the /languages/ directory.
      */
-    load_theme_textdomain( 'desherkhobor', get_template_directory() . '/languages' );
+    load_theme_textdomain( 'desher-khobor-unv', get_template_directory() . '/languages' );
 
     // Add default posts and comments RSS feed links to head.
     add_theme_support( 'automatic-feed-links' );
@@ -40,11 +40,10 @@ function desher_khobor_setup() {
      */
     add_theme_support( 'post-thumbnails' );
 
-    // This theme uses wp_nav_menu() in one location.
     register_nav_menus( array(
-        'primary' => __( 'Primary Menu', 'desherkhobor' ),
-        'top'     => __( 'Top Single Nav', 'desherkhobor' ),
-        'footer'  => __( 'Footer Menu', 'desherkhobor' ),
+        'primary' => __( 'Primary Menu', 'desher-khobor-unv' ),
+        'top'     => __( 'Top Single Nav', 'desher-khobor-unv' ),
+        'footer'  => __( 'Footer Menu', 'desher-khobor-unv' ),
     ) );
 
     /*
@@ -81,18 +80,18 @@ add_action( 'after_setup_theme', 'desher_khobor_content_width', 0 );
  */
 function desher_khobor_widgets_init() {
     register_sidebar( array(
-        'name'          => __( 'Front Page', 'desherkhobor' ),
+        'name'          => __( 'Front Page', 'desher-khobor-unv' ),
         'id'            => 'sidebar-front',
-        'description'   => __( 'Add widgets here.', 'desherkhobor' ),
+        'description'   => __( 'Add widgets here.', 'desher-khobor-unv' ),
         'before_widget' => '<section id="%1$s" class="widget %2$s">',
         'after_widget'  => '</section>',
         'before_title'  => '<h5 class="widget-title">',
         'after_title'   => '</h5>',
     ) );
     register_sidebar( array(
-        'name'          => __( 'Sidebar', 'desherkhobor' ),
+        'name'          => __( 'Sidebar', 'desher-khobor-unv' ),
         'id'            => 'sidebar-1',
-        'description'   => __( 'Add widgets here.', 'desherkhobor' ),
+        'description'   => __( 'Add widgets here.', 'desher-khobor-unv' ),
         'before_widget' => '<section id="%1$s" class="widget %2$s">',
         'after_widget'  => '</section>',
         'before_title'  => '<h5 class="widget-title">',
@@ -128,7 +127,7 @@ function desherkhobor_excerpt_more( $link ) {
     $link = sprintf( '<a href="%1$s" class="more-link">%2$s</a>',
         esc_url( get_permalink( get_the_ID() ) ),
         /* translators: %s: Name of current post */
-        sprintf( __( 'বিস্তারিত', 'desherkhobor' ), get_the_title( get_the_ID() ) )
+        sprintf( __( 'বিস্তারিত', 'desher-khobor-unv' ), get_the_title( get_the_ID() ) )
     );
     return '.....' . $link;
 }
