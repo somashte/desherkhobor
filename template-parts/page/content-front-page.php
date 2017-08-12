@@ -39,7 +39,7 @@ get_header(); ?>
                     </div>
                     <div class="news-list">
                         <div class="row">
-                            <?php desher-khobor-unv_frontpage_news_section(); ?>
+                            <?php desherkhobor_frontpage_news_section(); ?>
                         </div>
                     </div>
                 </div>

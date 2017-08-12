@@ -207,7 +207,7 @@ gulp.task('update-function-name', function(done) {
 });
 gulp.task('update-package-name', function(done) {
   return gulp.src([ './**/*.php' ])
-    .pipe(replace( 'desher-khobor-unv-unv', project ))
+    .pipe(replace( /(@package)(\s*)(.*)/, '$1$2' +project ))
     .pipe(gulp.dest( './' ))
     done();
 });

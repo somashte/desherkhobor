@@ -19,7 +19,7 @@
             <div class="site-info col-md-12 text-center">
                 <h5>সম্পাদক: মীর মাসরুর জামান</h5>
                 <h5>একটি সমষ্টি প্রকাশনা <span class="sep"> | </span> <a href="<?php echo esc_url( __( '//www.somashte.org/', 'desher-khobor-unv' ) ); ?>"><?php printf( esc_html__( 'www.somashte.org', 'desher-khobor-unv' )); ?></a></h5>
-                <h5>ইমেইল: <a href="mailto:desher-khobor-unv.net@gmail.com">desher-khobor-unv.net@gmail.com</a></h5>
+                <h5>ইমেইল: <a href="mailto:desherkhobor.net@gmail.com">desherkhobor.net@gmail.com</a></h5>
                 <h5>&copy; দেশের খবর</h5>
             </div><!-- .site-info -->
             <div class="author-info col-md-12 text-center">
