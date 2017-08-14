@@ -175,7 +175,7 @@ function desherkhobor_frontpage_news_section() {
                 <p><?php the_excerpt(); ?></p>
             </article>
         <?php else : ?>
-            <?php echo '</div><br><div class="row">'; ?>
+            <?php echo '</div><br><div class="row news-row">'; ?>
             <article class="col-md-12" id="post-<?php the_ID(); ?>" role="article">
                 <div class="row">
                     <div class="col-md-3">

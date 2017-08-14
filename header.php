@@ -27,41 +27,46 @@
 
 
             <header id="masthead" class="site-header row" role="banner">
-                <div class="header-top col-sm-12">
-                    <?php get_template_part( 'template-parts/header/header', 'top' ); ?>
-                </div> <!-- .header-top -->
+                <div class="col-md-12">
+                    <div class="row not-navigation">
+                        <div class="header-top col-sm-12">
+                            <?php get_template_part( 'template-parts/header/header', 'top' ); ?>
+                        </div> <!-- .header-top -->
 
-                <div class="site-branding col-sm-12">
+                        <div class="site-branding col-sm-12">
 
 
-                    <div class="custom-header-media">
-                        <?php the_custom_header_markup(); ?>
-                    </div>
+                            <div class="custom-header-media">
+                                <?php the_custom_header_markup(); ?>
+                            </div>
 
-                    <?php
-                    if ( is_front_page() && is_home() ) : ?>
-                        <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-                    <?php else : ?>
-                        <h2 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h2>
-                    <?php
-                    endif;
+                            <?php
+                            if ( is_front_page() && is_home() ) : ?>
+                                <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+                            <?php else : ?>
+                                <h2 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h2>
+                            <?php
+                            endif;
 
-                    $description = get_bloginfo( 'description', 'display' );
-                    if ( $description || is_customize_preview() ) : ?>
-                        <h6 class="site-description"><?php echo $description; ?></h6>
-                    <?php
-                    endif; ?>
-                </div><!-- .site-branding -->
+                            $description = get_bloginfo( 'description', 'display' );
+                            if ( $description || is_customize_preview() ) : ?>
+                                <h6 class="site-description"><?php echo $description; ?></h6>
+                            <?php
+                            endif; ?>
+                        </div><!-- .site-branding -->
 
-                <div class="col-sm-12">
-                    <div class="row">
-                        <?php get_template_part( 'template-parts/header/header', 'headlines' ); ?>
+                        <div class="col-sm-12">
+                            <div class="row headlines-area" data-spy="affix" data-offset-top="220">
+                                <?php get_template_part( 'template-parts/header/header', 'headlines' ); ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <?php if ( has_nav_menu( 'primary' ) ) : ?>
-                    <?php get_template_part( 'template-parts/navigation/navigation', 'primary' ); ?>
-                <?php endif; ?>
+                <div class="affix-navigation" data-spy="affix" data-offset-top="220">
+                    <?php if ( has_nav_menu( 'primary' ) ) : ?>
+                        <?php get_template_part( 'template-parts/navigation/navigation', 'primary' ); ?>
+                    <?php endif; ?>
+                </div>
             </header> <!-- #masthead -->
 
             <div id="content" class="site-content row">
