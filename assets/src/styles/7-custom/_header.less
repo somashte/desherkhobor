@@ -81,16 +81,15 @@
 }
 
 .headlines-area {
+  height: 44px;
 
   .headlines-title {
-    margin-bottom: 10px;
-    height: 44px;
+    min-height: 44px;
     color: #fff;
     background-color: @brand-red;
   }
   .headlines-posts {
-    margin-bottom: 10px;
-    height: 44px;
+    min-height: 44px;
     background-color: @brand-green;
     padding-left: 0;
     padding-right: 0;
@@ -104,4 +103,34 @@
       color: @brand-red;
     }
   }
+}
+
+#site-navigation {
+  .shadow-1();
+}
+.not-navigation {
+  background-color: #fff;
+  margin-bottom: 10px;
+  .shadow-1();
+}
+
+.affix-navigation,
+.headlines-area {
+  transition: all 3s ease-in-out;
+}
+.affix {
+  width: 1170px;
+  z-index: 999;
+
+  &.headlines-area {
+    top: 0;
+  }
+
+  &.affix-navigation {
+    top: 44px;
+  }
+}
+
+.affix-on {
+  margin-bottom: (44 + 54) * 1px;
 }

@@ -9,12 +9,12 @@
 }
 
 .section-title {
-  border-bottom: 2px solid @brand-green;
+  border-bottom: 3px solid @brand-green;
 
   > h4 {
-    width: 160px;
+    width: 200px;
     text-align: center;
-    padding: 6px 15px;
+    padding: 10px 15px 6px;
     margin: 0;
     color: #fff;
     background-color: @brand-green;
@@ -23,6 +23,13 @@
 
 .news-list {
   margin-top: 15px;
+
+  .news-row {
+    padding-bottom: 10px;
+    &:not(:last-child) {
+      border-bottom: 2px solid @gray-lighter;
+    }
+  }
 
   .post-thumbnail-lg {
     max-height: 200px;
