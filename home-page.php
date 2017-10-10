@@ -13,7 +13,7 @@ get_header(); ?>
             <div class="section-title">
                 <h4><?php _e('প্রধান খবর', 'desher-khobor-unv') ?></h4>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 news-block">
                 <?php $category_1 = Kirki::get_option( 'dk', 'category_for_section_1' ); ?>
                 <?php query_posts( array ( 'category_name' => $category_1, 'posts_per_page' => 6 ) ); $counter = 0; $layout = 'col-md-6'; ?>
                 <div class="news-list">
@@ -39,7 +39,7 @@ get_header(); ?>
             <div class="section-title">
                 <h4><?php _e('স্থানীয় শীর্ষ', 'desher-khobor-unv') ?></h4>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 news-block">
                 <?php $category_2 = Kirki::get_option( 'dk', 'category_for_section_2' ); ?>
                 <?php query_posts( array ( 'category_name' => $category_2, 'posts_per_page' => 6 ) ); $counter = 0;?>
                 <div class="news-list">
@@ -65,7 +65,7 @@ get_header(); ?>
             <div class="section-title">
                 <h4><?php _e('অন্যান্য খবর', 'desher-khobor-unv') ?></h4>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 news-block">
                 <?php $category_3 = Kirki::get_option( 'dk', 'category_for_section_3' ); ?>
                 <?php query_posts( array ( 'category_name' => $category_3, 'posts_per_page' => 6 ) ); $counter = 0;?>
                 <div class="news-list">

@@ -56,5 +56,6 @@
 
     <!-- <footer class="entry-footer">
         <?php // desher_khobor_entry_footer(); ?>
-    </footer> --> <!-- .entry-footer -->
+    </footer> -->
+    <!-- .entry-footer -->
 </article><!-- #post-## -->

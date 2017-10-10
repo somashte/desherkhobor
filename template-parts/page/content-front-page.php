@@ -34,12 +34,14 @@ get_header(); ?>
                     $label = get_the_category_by_ID( $category );
                     query_posts( array ( 'cat' => $category, 'posts_per_page' => 6 ) ); ?>
                 <div class="col-md-12">
-                    <div class="section-title">
-                        <h4><?php echo $label; ?></h4>
-                    </div>
-                    <div class="news-list">
-                        <div class="row">
-                            <?php desherkhobor_frontpage_news_section(); ?>
+                    <div class="news-block">
+                        <div class="section-title">
+                            <h4><?php echo $label; ?></h4>
+                        </div>
+                        <div class="news-list">
+                            <div class="row news-row">
+                                <?php desherkhobor_frontpage_news_section(); ?>
+                            </div>
                         </div>
                     </div>
                 </div>
