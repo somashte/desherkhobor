@@ -79,7 +79,6 @@ class DK_Category_Widget extends WP_Widget {
 
         $title = apply_filters('widget_title', empty($instance['title']) ? __('Recent Posts') : get_cat_name( $cat_id ), $instance, $this->id_base);
 
-
         if( empty( $instance['number'] ) || ! $number = absint( $instance['number'] ) )
             $number = 5;
 
